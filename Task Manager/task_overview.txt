@@ -1,0 +1,12 @@
+---------------------------------------------------------------------
+
+Task overview
+
+Total number of tasks:            3
+Completed tasks:                  1
+Uncompleted tasks:                2
+Overdue tasks:                    0
+Incomplete task %:                66.67%
+Overdue task %:                   0.0%
+
+---------------------------------------------------------------------

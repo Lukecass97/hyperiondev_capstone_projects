@@ -1,0 +1,15 @@
+---------------------------------------------------------------------
+
+User overview
+
+Total number of users:              2
+Total number of tasks:              3
+
+Username:                           admin
+Number of tasks assigned to user:   2
+% of tasks assigned to user:        66.67%
+% completed tasks by user:          50.0%
+% incomplete tasks by user:         50.0%
+% overdue tasks by user:            0.0%
+
+---------------------------------------------------------------------
