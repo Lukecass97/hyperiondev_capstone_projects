@@ -340,10 +340,6 @@ Number of tasks assigned to user:   {user_tasks}
 # to the terminal.
 def stats():
 
-    # gen_rep() function called to create the text files "task_overview.txt"
-    # and "user_overview.txt" if they do not exist yet.
-    gen_rep()
-
     with open("task_overview.txt", "r") as t_ov_file:
         for stats in t_ov_file.readlines():
             print(stats)
@@ -425,7 +421,11 @@ e - Exit
         elif menu == 'gr':
             gen_rep()
           
-        elif menu == 'ds': 
+        elif menu == 'ds':
+            # gen_rep() function called to create the text files 
+            # "task_overview.txt" and "user_overview.txt" if they do 
+            # not exist yet.
+            gen_rep()
             stats()
            
         elif menu == 'e':
