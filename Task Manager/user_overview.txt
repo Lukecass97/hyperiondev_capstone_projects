@@ -1,5 +1,5 @@
----------------------------------------------------------------------
 
+---------------------------------------------------------------------
 User overview
 
 Total number of users:              2
@@ -12,4 +12,9 @@ Number of tasks assigned to user:   2
 % incomplete tasks by user:         50.0%
 % overdue tasks by user:            0.0%
 
----------------------------------------------------------------------
+Username:                           james
+Number of tasks assigned to user:   1
+% of tasks assigned to user:        33.33%
+% completed tasks by user:          0.0%
+% incomplete tasks by user:         100.0%
+% overdue tasks by user:            0.0%

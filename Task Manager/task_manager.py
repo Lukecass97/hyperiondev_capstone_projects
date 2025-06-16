@@ -29,9 +29,15 @@ with open("tasks.txt", "r") as t_file:
         count += 1
         
             
-# Function for registering a new user.
 def reg_user():
-
+    
+    '''This function takes input from the admin user to register a new user.
+    It will request the new username and new password of the user to be 
+    registered. The username will be appended to the username list and 
+    password will be appended to the password list. The new user will 
+    then be written to the text file "user.txt".
+    '''
+    
     new_username = input("New username: ")
     while True:
         new_username not in username
@@ -63,8 +69,14 @@ def reg_user():
     with open("user.txt", "a") as user_file:
             user_file.write(f"\n{new_username};{new_password}")
                 
-# Function to add a new task.
+
 def add_task():
+        
+        '''This function will allow a user to add a new task. It will ask
+        for the user the task is assigned to, the task title, description 
+        and due date. The task details will then be written to the text 
+        file "tasks.txt".
+        '''
         
         task_username = input("Name of user assigned to this task: ")
         
@@ -72,6 +84,7 @@ def add_task():
             task_username in username
             if task_username not in username:
                print("User does not exist. Please enter valid username.\n") 
+               
                task_username = input("Name of user assigned to this task: ")
                # If username entered is not in username, error message.
 
@@ -82,7 +95,7 @@ def add_task():
         
                 curr_date = date.today()
         
-                task_due_date = input("Due date of task YYYY-MM-DD: ")
+                task_due_date = input("Due date of task YYYY/MM/DD: ")
         
                 completed = "No"
                    
@@ -95,8 +108,11 @@ def add_task():
                 break
 
         
-# Function to view all tasks.
 def view_all():
+
+    '''This function will allow a user to view all tasks assigned on 
+    task_manager.py and will display them in a user-friendly manner.
+    '''
     
     # Count to keep track of the number of tasks.
     task_count = 0
@@ -119,8 +135,16 @@ Task description:\n{task_dict[key][2]}
 ---------------------------------------------------------------------
 ''')
 
-# Function to view tasks of current user.
+
 def view_mine():
+
+    '''This function will allow a user to view all tasks assigned to them
+    by reading from the text file "tasks.txt". The user then has the option
+    to mark the task as complete or edit the task (given it is not already
+    complete) by either changing the due date or changing the user the task 
+    is assigned to.
+    '''
+    
     with open("tasks.txt", "r") as f:
         data = f.readlines()
 
@@ -249,36 +273,42 @@ this task in the format: YYYY-MM-DD:\n''')
                 print("Task marked as complete.\n")
                 break   
 
-# Fucntion for generating reports.
+
 def gen_rep():
 
-        curr_date = datetime.today()
-        curr_date = datetime.strftime(curr_date,"%Y-%m-%d" )
+    '''This function will generate two text files, "task_overview.txt" and 
+    "user_overview.txt". The "task_overview.txt" file will contain statistics
+    on the tasks in task_manager.py. The "user_overview.txt" file will contain
+    statistics on the each users assigned tasks.
+    '''
 
-        total_tasks = len(task_dict)
-        
-        # Variables for complete, incomplete and overdue tasks.
-        complete_tasks = 0
-        incomplete_tasks = 0
-        overdue_tasks = 0
+    curr_date = datetime.today()
+    curr_date = datetime.strftime(curr_date,"%Y-%m-%d" )
 
-        # Uses items from task_dict to check if tasks are complete,
-        # incomplete or overdue.
-        for key in task_dict:
-            if task_dict[key][5] == "Yes":
-                complete_tasks += 1
+    total_tasks = len(task_dict)
+    total_users = len(username)
 
-            if task_dict[key][5] == "No":
-                incomplete_tasks += 1
+    # Variables for complete, incomplete and overdue tasks.
+    complete_tasks = 0
+    incomplete_tasks = 0
+    overdue_tasks = 0
 
-            if task_dict[key][3] < curr_date:
-                   overdue_tasks += 1
+    # Uses items from task_dict to check if tasks are complete,
+    # incomplete or overdue.
+    for key in task_dict:
+        if task_dict[key][5] == "Yes":
+            complete_tasks += 1
+
+        if task_dict[key][5] == "No":
+            incomplete_tasks += 1
+
+        if task_dict[key][3] < curr_date:
+            overdue_tasks += 1
             
-            # Writes to task_overview.txt and displyed in a user friendly way.
-            with open("task_overview.txt", "w") as t_ov_file:
-                t_ov_file.write(
+        # Writes to task_overview.txt and displyed in a user friendly way.
+        with open("task_overview.txt", "w") as t_ov_file:
+            t_ov_file.write(
 f'''---------------------------------------------------------------------
-
 Task overview
 
 Total number of tasks:            {total_tasks}
@@ -289,13 +319,22 @@ Incomplete task %:                {round((incomplete_tasks/len(task_dict)) * 100
 Overdue task %:                   {round((overdue_tasks/len(task_dict)) * 100, 2)}%
 
 ---------------------------------------------------------------------
-''')            
-    
-        total_users = len(username)
-        total_tasks = len(task_dict)
+''')  
+
+    # Empty string to store what is to be written to text file
+    # "user_overview.txt".
+    user_overview = "" 
+    user_overview += f'''
+---------------------------------------------------------------------
+User overview
+
+Total number of users:              {total_users}
+Total number of tasks:              {total_tasks}
+'''
         
-        # Variables for the tasks, completed tasks, incomplete tasks
-        # and overdue tasks of current user.
+    # Variables for the tasks, completed tasks, incomplete tasks
+    # and overdue tasks of each user.
+    for u in username:
         user_tasks = 0
         user_complete = 0
         user_incomplete = 0
@@ -303,42 +342,38 @@ Overdue task %:                   {round((overdue_tasks/len(task_dict)) * 100, 2
 
         # Uses task_dict items to check tasks.
         for key in task_dict:
-            if task_dict[key][0] == curr_user:
+            if task_dict[key][0] == u:
                 user_tasks += 1
 
-            if task_dict[key][5] == "Yes" and curr_user == task_dict[key][0]:
+            if task_dict[key][0] == u and task_dict[key][5] == 'Yes':
                 user_complete += 1
 
-            if task_dict[key][5] == "No" and curr_user == task_dict[key][0]:
+            if task_dict[key][0] == u and task_dict[key][5] == 'No':
                 user_incomplete += 1
-            
-            if task_dict[key][3] < curr_date and curr_user == task_dict[key][0]:
+             
+            if task_dict[key][0] == u and task_dict[key][3] < curr_date:
                 user_overdue += 1
 
-            # Written to user_overview.txt and displayed in a user friendly way.
-            with open("user_overview.txt", "w") as usr_ov_file:
-                usr_ov_file. write(
-f'''---------------------------------------------------------------------
-
-User overview
-
-Total number of users:              {total_users}
-Total number of tasks:              {total_tasks}
-
-Username:                           {curr_user}
+        user_overview += f'''
+Username:                           {u}
 Number of tasks assigned to user:   {user_tasks}
 % of tasks assigned to user:        {round((user_tasks/total_tasks) * 100, 2)}%
 % completed tasks by user:          {round((user_complete/user_tasks) * 100, 2)}%
 % incomplete tasks by user:         {round((user_incomplete/user_tasks) * 100, 2)}%
 % overdue tasks by user:            {round((user_overdue/user_tasks) * 100, 2)}%
+'''  
+ 
+    # Written to user_overview.txt and displayed in a user-friendly way.
+    with open("user_overview.txt", "w") as usr_ov_file:
+        usr_ov_file. write(user_overview)
 
----------------------------------------------------------------------
-''')
-
-# Function displaying statistics
-# Prints task_overview.txt and user_overview.txt in a user friendly manner
-# to the terminal.
+          
 def stats():
+
+    '''This function will display to the terminal the statistics written in
+    the text files "task_overview.txt" and "user_overview.txt" in a 
+    user-friendly manner.
+    '''
 
     with open("task_overview.txt", "r") as t_ov_file:
         for stats in t_ov_file.readlines():
@@ -350,7 +385,7 @@ def stats():
 
 #====Login Section====
 '''This code reads usernames and password from the user.txt file to 
-    allow a user to login.
+allow a user to login.
 '''
 # If no user.txt file, write one with a default account
 if not os.path.exists("user.txt"):
@@ -375,7 +410,6 @@ for user in user_data:
 
 logged_in = False
 while not logged_in:
-
     print("LOGIN")
     curr_user = input("Username: ")
     if curr_user not in username:
