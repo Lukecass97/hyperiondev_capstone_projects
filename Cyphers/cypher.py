@@ -7,6 +7,7 @@
 # Cypher 5 6 7 8 9 0 1 2 3 4
 
 def encode(message, shift):
+    
     '''In the char.islower() and char.isupper() if statements each 
     character in the input message will be iterated over and:
     1. Char will be converted to unicode value using ord() function.
