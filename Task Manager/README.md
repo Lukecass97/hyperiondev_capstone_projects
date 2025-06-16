@@ -16,7 +16,7 @@ The admin user has ability to:
 
 If a new user is registered, the new user data is added to the text file "user.txt".
 If a new task is added, the new task is added to the text file "tasks.txt".
-If the generate reports option is selected, two text files are generated: "user_overview.txt" and "task_overview.txt" and these files output the data contained in a user-friendly manner.
+If the generate reports option is selected, two text files are generated: "user_overview.txt" and "task_overview.txt". The display statistics option outputs the data contained in these files in a user-friendly manner.
 
 The non-admin user has the ability to:
 <ol>
@@ -25,4 +25,4 @@ The non-admin user has the ability to:
   <li>View my tasks</li>
 </ol>
 
-The user is able to mark a task assigned to them as complete or edit a task assigned to them by editing the username of the person the task is assigned to or the due date of the task.
+The user is able to mark a task assigned to them as complete or edit a task assigned to them by changing the user the task is assigned to or changing the due date of the task.
