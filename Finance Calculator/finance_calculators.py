@@ -18,15 +18,15 @@ investment = "investment"
 
 bond = "bond"
 
-calculation == investment or bond 
+calculation in (investment, bond) 
 
 while True:
-    calculation == investment or bond
+    calculation in (investment, bond)
         
         # Prompting user to input a deposit amount and then storing that 
         # amount in a float variable called "deposit".
     
-    if calculation == investment:
+    if calculation in investment:
         deposit = input("Enter the amount of money you are depositing: \n$")
         deposit = float(deposit)
         
@@ -104,7 +104,7 @@ or "compound": \n''').casefold()
     # Prompting the user to input the present value of the house
     # and storing in a float variable called "house_value".
     
-    elif calculation == bond:
+    elif calculation in bond:
         house_value = input("Enter the present value of the house: \n$")
         
         house_value = float(house_value)
