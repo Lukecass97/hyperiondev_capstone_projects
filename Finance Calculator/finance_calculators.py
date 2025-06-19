@@ -2,15 +2,13 @@ import math
 
 # Informing the user of the calculations and prompting them to 
 # choose the one they want to proceed.
-
 print('''investment - to calculate the amount of interest you'll
 earn on your investment''')
 
 print("bond - to calculate the amount you'll have to pay on a home")
 
 # Using the .casefold() method so the user can enter their 
-# answer in upper or lower case.
- 
+# answer in upper or lower case. 
 calculation = input('''Enter either "investment" or "bond" from the menu above
 to proceed: ''').casefold()
 
@@ -23,9 +21,8 @@ calculation in (investment, bond)
 while True:
     calculation in (investment, bond)
         
-        # Prompting user to input a deposit amount and then storing that 
-        # amount in a float variable called "deposit".
-    
+    # Prompting user to input a deposit amount and then storing that 
+    # amount in a float variable called "deposit". 
     if calculation in investment:
         deposit = input("Enter the amount of money you are depositing: \n$")
         deposit = float(deposit)
@@ -33,7 +30,6 @@ while True:
         # Prompting the user to input the interest rate and storing in 
         # a variable called "interest_rate". Dividng the interest rate
         # by 100 to ensure the calculation is correct.
-        
         interest_rate = input("Enter the interest rate %: \n")
 
         interest_rate = float(interest_rate)
@@ -43,7 +39,6 @@ while True:
         
         # Prompting the user to input the number of years they want to 
         # invest and storing in an integer variable called "num_of_years".
-        
         num_of_years = input("Enter the number of years you plan to invest: \n")
         
         num_of_years = int(num_of_years)
@@ -52,7 +47,6 @@ while True:
         # storing in a variable called "interest".
         # Using the .casefold() method so the user can enter in either
         # upper or lower case.
-        
         interest = input('''Enter the type of interest, either "simple" 
 or "compound": \n''').casefold()
         
@@ -65,8 +59,7 @@ or "compound": \n''').casefold()
          # Printing the calculated amount to 2 decimal places in an 
          # f string style. 
          # Using nested if-elif statements so the program bypasses
-         # these if "bond" is entered at the start.
-        
+         # these if "bond" is entered at the start. 
         while True:
             interest == simple or compound
             
@@ -92,8 +85,7 @@ period at the specified interest rate is: \n${total_amount}''')
                 print("Error!")
 
                 # Using the .casefold() method so the user can enter 
-                # their answer in either upper or lower case.
-                
+                # their answer in either upper or lower case.  
                 interest = input('''Enter the type of interest, either "simple" 
 or "compound": \n''').casefold()
         break 
@@ -102,8 +94,7 @@ or "compound": \n''').casefold()
         # write something other than "simple" or "compound". 
 
     # Prompting the user to input the present value of the house
-    # and storing in a float variable called "house_value".
-    
+    # and storing in a float variable called "house_value".  
     elif calculation in bond:
         house_value = input("Enter the present value of the house: \n$")
         
@@ -113,7 +104,6 @@ or "compound": \n''').casefold()
         # a float variable called "interest_rate2".
         # Dividing the interest rate by 100 and then the answer of 
         # that by 12 to ensure the calculation will be correct.
-        
         interest_rate2 = input("Enter the interest rate %: \n")
         
         interest_rate2 = float(interest_rate2)
@@ -122,15 +112,13 @@ or "compound": \n''').casefold()
         
         # Prompting the user to input the number of months they plan to 
         # repay and storing in an integer variable called "num_of_months"
-        
         num_of_months = input('''Enter the number of months you plan to take
 to repay the bond: \n''')
         
         num_of_months = int(num_of_months)
         
         # Calculating the "bond_repayment" and printing to 2 decimal places
-        # in an f string style.
-        
+        # in an f string style. 
         bond_repayment = (interest_rate2 * house_value)/(1 - (1 + interest_rate2)**(-num_of_months))
         
         bond_repayment = float(round(bond_repayment, 2)) 
